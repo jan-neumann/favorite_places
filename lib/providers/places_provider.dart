@@ -8,6 +8,11 @@ class PlacesNotifier extends StateNotifier<List<Place>> {
     if (state.contains(place)) return;
     state = [...state, place];
   }
+
+  void remove(Place place) {
+    if (!state.contains(place)) return;
+    state = state.where((p) => p.id != place.id).toList();
+  }
 }
 
 final placesProvider = StateNotifierProvider<PlacesNotifier, List<Place>>((ref) {

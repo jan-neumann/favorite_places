@@ -35,7 +35,7 @@ class _AddNewPlaceState extends ConsumerState<AddNewPlace> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text('Add new Place')),
+      appBar: AppBar(title: Text('Add new Place'), backgroundColor: Theme.of(context).shadowColor,),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
         child: Form(
@@ -44,6 +44,7 @@ class _AddNewPlaceState extends ConsumerState<AddNewPlace> {
             children: [
               TextFormField(
                 maxLength: 60,
+                style: TextStyle(color: Colors.white),
                 decoration: InputDecoration(label: Text('Title')),
                 validator: (value) {
                   if (value == null ||
