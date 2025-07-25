@@ -15,7 +15,6 @@ class PlacesScreen extends ConsumerStatefulWidget {
 }
 
 class _PlacesScreenState extends ConsumerState<PlacesScreen> {
-  
   void _addPlace() {
     Navigator.of(
       context,
@@ -42,22 +41,25 @@ class _PlacesScreenState extends ConsumerState<PlacesScreen> {
                 style: Theme.of(context).textTheme.titleMedium,
               ),
             )
-          : ListView.builder(
-              itemCount: places.length,
-              itemBuilder: (ctx, index) => Dismissible(
-                background: Container(
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(8),
-                    color: Colors.redAccent,
+          : Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: ListView.builder(
+                itemCount: places.length,
+                itemBuilder: (ctx, index) => Dismissible(
+                  background: Container(
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(8),
+                      color: Colors.redAccent,
+                    ),
                   ),
+                  key: ValueKey(places[index]),
+                  child: PlaceListItem(placeItem: places[index]),
+                  onDismissed: (direction) {
+                    _removePlace(places[index]);
+                  },
                 ),
-                key: ValueKey(places[index]),
-                child: PlaceListItem(placeItem: places[index]),
-                onDismissed: (direction) {
-                  _removePlace(places[index]);
-                },
               ),
-            ),
+          ),
     );
   }
 }

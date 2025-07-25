@@ -10,6 +10,7 @@ class PlaceListItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ListTile(
+      leading: CircleAvatar(radius: 26, backgroundImage: FileImage(placeItem.image),),
       title: Text(
         placeItem.name,
         style: Theme.of(context).textTheme.titleMedium!.copyWith(
