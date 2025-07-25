@@ -3,16 +3,16 @@ import 'package:favorite_places/providers/places_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-class AddNewPlace extends ConsumerStatefulWidget {
-  const AddNewPlace({super.key});
+class AddPlaceScreen extends ConsumerStatefulWidget {
+  const AddPlaceScreen({super.key});
 
   @override
-  ConsumerState<AddNewPlace> createState() {
+  ConsumerState<AddPlaceScreen> createState() {
     return _AddNewPlaceState();
   }
 }
 
-class _AddNewPlaceState extends ConsumerState<AddNewPlace> {
+class _AddNewPlaceState extends ConsumerState<AddPlaceScreen> {
   final _formKey = GlobalKey<FormState>();
   var _enteredTitle = '';
 

@@ -1,4 +1,5 @@
 import 'package:favorite_places/model/place.dart';
+import 'package:favorite_places/model/widgets/place_list_item.dart';
 import 'package:favorite_places/providers/places_provider.dart';
 import 'package:favorite_places/screens/add_new_place.dart';
 import 'package:flutter/material.dart';
@@ -17,7 +18,7 @@ class _PlacesScreenState extends ConsumerState<PlacesScreen> {
   void _addPlace() {
     Navigator.of(
       context,
-    ).push(MaterialPageRoute(builder: (ctx) => AddNewPlace()));
+    ).push(MaterialPageRoute(builder: (ctx) => AddPlaceScreen()));
   }
 
   void _removePlace(Place place) {
@@ -29,7 +30,7 @@ class _PlacesScreenState extends ConsumerState<PlacesScreen> {
     final places = ref.watch(placesProvider);
     return Scaffold(
       appBar: AppBar(
-        title: Text('My Places'),
+        title: Text('Your Places'),
         actions: [IconButton(onPressed: _addPlace, icon: Icon(Icons.add))],
         backgroundColor: Theme.of(context).shadowColor,
       ),
@@ -50,7 +51,7 @@ class _PlacesScreenState extends ConsumerState<PlacesScreen> {
                   ),
                 ),
                 key: ValueKey(places[index]),
-                child: ListTile(title: Text(places[index].name)),
+                child: PlaceListItem(placeItem: places[index]),
                 onDismissed: (direction) {
                   _removePlace(places[index]);
                 },
