@@ -8,11 +8,11 @@ class AddPlaceScreen extends ConsumerStatefulWidget {
 
   @override
   ConsumerState<AddPlaceScreen> createState() {
-    return _AddNewPlaceState();
+    return _AddPlaceState();
   }
 }
 
-class _AddNewPlaceState extends ConsumerState<AddPlaceScreen> {
+class _AddPlaceState extends ConsumerState<AddPlaceScreen> {
   final _formKey = GlobalKey<FormState>();
   var _enteredTitle = '';
 
@@ -32,42 +32,44 @@ class _AddNewPlaceState extends ConsumerState<AddPlaceScreen> {
         title: Text('Add new Place'),
         backgroundColor: Theme.of(context).shadowColor,
       ),
-      body: Padding(
-        padding: const EdgeInsets.all(16.0),
-        child: Form(
-          key: _formKey,
-          child: Column(
-            children: [
-              TextFormField(
-                maxLength: 60,
-                style: TextStyle(color: Colors.white),
-                decoration: InputDecoration(label: Text('Title')),
-                validator: (value) {
-                  if (value == null ||
-                      value.isEmpty ||
-                      value.trim().length <= 1 ||
-                      value.trim().length > 60) {
-                    return 'Must be between 1 and 60 characters.';
-                  }
-                  return null;
-                },
-                onSaved: (value) {
-                  _enteredTitle = value ?? '';
-                },
-              ),
-              ElevatedButton(
-                onPressed: _addPlace,
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  mainAxisSize: MainAxisSize.min,
-                  children: [
-                    Icon(Icons.add),
-                    SizedBox(width: 8),
-                    Text('Add Place'),
-                  ],
+      body: SingleChildScrollView(
+        child: Padding(
+          padding: const EdgeInsets.all(16.0),
+          child: Form(
+            key: _formKey,
+            child: Column(
+              children: [
+                TextFormField(
+                  maxLength: 60,
+                  style: TextStyle(color: Colors.white),
+                  decoration: InputDecoration(label: Text('Title')),
+                  validator: (value) {
+                    if (value == null ||
+                        value.isEmpty ||
+                        value.trim().length <= 1 ||
+                        value.trim().length > 60) {
+                      return 'Must be between 2 and 60 characters.';
+                    }
+                    return null;
+                  },
+                  onSaved: (value) {
+                    _enteredTitle = value ?? '';
+                  },
                 ),
-              ),
-            ],
+                ElevatedButton(
+                  onPressed: _addPlace,
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      Icon(Icons.add),
+                      SizedBox(width: 8),
+                      Text('Add Place'),
+                    ],
+                  ),
+                ),
+              ],
+            ),
           ),
         ),
       ),
