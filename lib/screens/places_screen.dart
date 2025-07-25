@@ -15,6 +15,7 @@ class PlacesScreen extends ConsumerStatefulWidget {
 }
 
 class _PlacesScreenState extends ConsumerState<PlacesScreen> {
+  
   void _addPlace() {
     Navigator.of(
       context,
