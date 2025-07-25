@@ -20,14 +20,7 @@ class _AddNewPlaceState extends ConsumerState<AddNewPlace> {
     if (!_formKey.currentState!.validate()) return;
 
     _formKey.currentState?.save();
-    ref
-        .read(placesProvider.notifier)
-        .add(
-          Place(
-            id: DateTime.timestamp().hashCode.toString(),
-            name: _enteredTitle,
-          ),
-        );
+    ref.read(placesProvider.notifier).add(Place(name: _enteredTitle));
 
     Navigator.of(context).pop();
   }
@@ -35,7 +28,10 @@ class _AddNewPlaceState extends ConsumerState<AddNewPlace> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text('Add new Place'), backgroundColor: Theme.of(context).shadowColor,),
+      appBar: AppBar(
+        title: Text('Add new Place'),
+        backgroundColor: Theme.of(context).shadowColor,
+      ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
         child: Form(
