@@ -15,13 +15,11 @@ class PlaceLocation {
 }
 
 class Place {
-  Place(
-    // this.location, 
-  {required this.image, required this.name})
+  Place({required this.image, required this.name, required this.location})
     : id = Uuid().v4();
 
   final String id;
   final String name;
   final File image;
- // final PlaceLocation location;
+  final PlaceLocation location;
 }

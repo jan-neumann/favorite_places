@@ -1,5 +1,5 @@
 import 'package:favorite_places/model/place.dart';
-import 'package:favorite_places/model/widgets/place_list_item.dart';
+import 'package:favorite_places/widgets/place_list_item.dart';
 import 'package:favorite_places/providers/places_provider.dart';
 import 'package:favorite_places/screens/add_place_screen.dart';
 import 'package:flutter/material.dart';
