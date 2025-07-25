@@ -9,7 +9,6 @@
 .history
 
 
-
 # Flutter repo-specific
 /bin/cache/
 /bin/internal/bootstrap.bat
@@ -54,6 +53,7 @@ unlinked_spec.ds
 **/android/gradlew
 **/android/gradlew.bat
 **/android/local.properties
+**/android/secrets.properties
 **/android/**/GeneratedPluginRegistrant.java
 **/android/key.properties
 *.jks
