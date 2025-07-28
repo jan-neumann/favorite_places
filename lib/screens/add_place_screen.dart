@@ -28,7 +28,7 @@ class _AddPlaceState extends ConsumerState<AddPlaceScreen> {
     _formKey.currentState?.save();
     ref
         .read(placesProvider.notifier)
-        .add(Place(image: _pickedImage!, name: _enteredTitle, location: _selectedLocation!));
+        .add(_enteredTitle, _pickedImage!, _selectedLocation!);
 
     Navigator.of(context).pop();
   }

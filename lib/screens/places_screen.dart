@@ -15,6 +15,15 @@ class PlacesScreen extends ConsumerStatefulWidget {
 }
 
 class _PlacesScreenState extends ConsumerState<PlacesScreen> {
+
+  late Future<void> _placesFuture;
+
+  @override
+  void initState() {
+    super.initState();
+    _placesFuture = ref.read(placesProvider.notifier).loadPlaces();
+  }
+
   void _addPlace() {
     Navigator.of(
       context,
@@ -42,24 +51,30 @@ class _PlacesScreenState extends ConsumerState<PlacesScreen> {
               ),
             )
           : Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: ListView.builder(
-                itemCount: places.length,
-                itemBuilder: (ctx, index) => Dismissible(
-                  background: Container(
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(8),
-                      color: Colors.redAccent,
-                    ),
-                  ),
-                  key: ValueKey(places[index]),
-                  child: PlaceListItem(placeItem: places[index]),
-                  onDismissed: (direction) {
-                    _removePlace(places[index]);
-                  },
-                ),
+              padding: const EdgeInsets.all(8.0),
+              child: FutureBuilder(
+                future: _placesFuture,
+                builder: (context, snapshot) =>
+                    snapshot.connectionState == ConnectionState.waiting
+                    ? Center(child: CircularProgressIndicator())
+                    : ListView.builder(
+                        itemCount: places.length,
+                        itemBuilder: (ctx, index) => Dismissible(
+                          background: Container(
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(8),
+                              color: Colors.redAccent,
+                            ),
+                          ),
+                          key: ValueKey(places[index]),
+                          child: PlaceListItem(placeItem: places[index]),
+                          onDismissed: (direction) {
+                            _removePlace(places[index]);
+                          },
+                        ),
+                      ),
               ),
-          ),
+            ),
     );
   }
 }
